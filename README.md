@@ -1,4 +1,4 @@
-# A simple tab controller
+# A simple multiple tab controller
 A simple multiple tab controller with fading effects using HTML, CSS, and JavaScript.
 
 ## Overview
