@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiple Tab Controllers</title>
+<style>
+	.tab-container {
+		margin-bottom: 20px;
+	}
+	.tab-header {
+		display: flex;
+	}
+	.tab {
+		cursor: pointer;
+		padding: 10px;
+		background-color: #f0f0f0;
+		border: 1px solid #ccc;
+		border-bottom: none;
+		border-radius: 5px 5px 0 0;
+		transition: background-color 0.3s;
+		font-weight: bold;
+	}
+	.tab.active {
+		background-color: #ccc;
+	}
+	.tab-content {
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 0 0 5px 5px;
+		display: none;
+		background-color: #ccc;
+	}
+	.tab-content.active {
+		display: block;
+	}
+</style>
+</head>
+<body>
+<div class="tab-container">
+    <div class="tab-header" id="tabHeader1">
+        <div class="tab active" onclick="openTab('tabContent1')">Tab 1</div>
+        <div class="tab" onclick="openTab('tabContent2')">Tab 2</div>
+    </div>
+    <div id="tabContent1" class="tab-content active">
+        Content of Tab 1 of Controller 1
+    </div>
+    <div id="tabContent2" class="tab-content">
+        Content of Tab 2 of Controller 1
+    </div>
+</div>
+
+<div class="tab-container">
+    <div class="tab-header" id="tabHeader2">
+        <div class="tab active" onclick="openTab('tabContent3')">Tab 1</div>
+        <div class="tab" onclick="openTab('tabContent4')">Tab 2</div>
+    </div>
+    <div id="tabContent3" class="tab-content active">
+        Content of Tab 1 of Controller 2
+    </div>
+    <div id="tabContent4" class="tab-content">
+        Content of Tab 2 of Controller 2
+    </div>
+</div>
+
+<script>
+function openTab(contentId) {
+	// Traverses up the DOM tree to find the nearest ancestor element with the class tab-container.
+    var tabContainer = event.currentTarget.closest('.tab-container');
+	
+	// Selects all elements within the tabContainer that have the class tab.
+    var tabs = tabContainer.querySelectorAll('.tab');
+    var tabContents = tabContainer.querySelectorAll('.tab-content');
+
+	// Adds the class active to the tab that was clicked, marking it as active.
+    tabs.forEach(tab => tab.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    event.currentTarget.classList.add('active');
+    document.getElementById(contentId).classList.add('active');
+}
+</script>
+</body>
+</html>
